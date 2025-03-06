@@ -2,6 +2,7 @@ import { RequestHandler, Request, Response } from "express";
 import { CustomError } from "../../middlewares";
 import Category from "../../models/Category.entity";
 import { Op } from "sequelize";
+import Product from "../../models/Product.entity";
 
 export class CategoryController {
     static create: RequestHandler = async (
@@ -219,6 +220,33 @@ export class CategoryController {
             }
 
             res.status(200).json(category);
+        } catch (error) {
+            if (error instanceof CustomError) {
+                res.status(error.statusCode).json({
+                    errors: [{ message: error.message }],
+                });
+                return;
+            }
+            const internalError = CustomError.internalServer();
+            res.status(internalError.statusCode).json({
+                errors: [{ message: internalError.message }],
+            });
+        }
+    }
+
+    static getProductsByName: RequestHandler = async (req: Request, res: Response) => {
+        try {
+            const { name } = req.params;
+
+            const products = await Product.findAll({
+                where: {
+                    name: {
+                        [Op.iLike]: `%${name}%`
+                    }
+                }
+            });
+
+            res.status(200).json(products);
         } catch (error) {
             if (error instanceof CustomError) {
                 res.status(error.statusCode).json({

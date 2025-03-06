@@ -15,6 +15,7 @@ export class CategoryRoutes {
         router.put('/update/:id', [AuthProtect.validateJWT, ValidationsContents.validationIdParam, ValidationsContents.CategoryUpdate],CategoryController.update);
         router.get('/search', AuthProtect.validateJWT, CategoryController.search);
         router.get('/get-name/:name', CategoryController.getByName);
+        router.get('/get-products/:name', CategoryController.getProductsByName);
         
         return router;
     }
