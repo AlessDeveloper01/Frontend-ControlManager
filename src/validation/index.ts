@@ -146,7 +146,8 @@ export class ValidationsContents {
     static OrderNew = async (req: Request, res: Response, next: NextFunction) => {
         await Promise.all([
             body('mesero').isString().withMessage('El mesero debe ser caracteres').optional().notEmpty().withMessage('El mesero es requerido').run(req),
-            body('products').isArray().withMessage('Los productos debe ser un arreglo').notEmpty().withMessage('Los productos son requeridos').run(req)
+            body('products').isArray().withMessage('Los productos debe ser un arreglo').notEmpty().withMessage('Los productos son requeridos').run(req),
+            body('table').isNumeric().withMessage('La mesa debe ser un numero').notEmpty().withMessage('La mesa es requerida').run(req)
         ])
 
         const errors = validationResult(req);

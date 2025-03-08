@@ -11,13 +11,14 @@ export class OrderController {
         try {
             const { dataValues } = req.body.user;
 
-            const { products } = req.body;
+            const { products, table } = req.body;
             let total = 0;
             let errors: string[] = [];
 
             const order = new Order();
             order.mesero = dataValues.name;
             order.date = new Date();
+            order.numTable = table;
 
             for(const product of products) {
                 const productDB = await Product.findOne({ where: { id: product.id } });
@@ -30,6 +31,7 @@ export class OrderController {
             }
             
             order.total = total;
+            console.log(order);
             await order.save();
             
             for(const product of products) {
@@ -55,6 +57,7 @@ export class OrderController {
                 const internalError = CustomError.internalServer();
                 res.status(internalError.statusCode).json({ errors: [{ message: internalError.message }] });
             }
+            console.log(error);
         }
     }
 

@@ -46,6 +46,13 @@ class Order extends Model {
     })
     declare methodPayment: string;
 
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+    })
+    declare numTable: number;
+
     @BelongsToMany(() => Product, () => OrderProduct)
     declare products: Product[];
 }   
