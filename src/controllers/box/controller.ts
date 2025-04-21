@@ -6,6 +6,7 @@ import OrderProduct from "../../models/OrderProduct.entity";
 import BoxProduct from "../../models/BoxProduct.entity";
 import Ingredient from "../../models/Ingredient.entity";
 import Product from "../../models/Product.entity";
+import TableE from "../../models/TableE.entity";
 
 export class BoxController {
 
@@ -74,6 +75,13 @@ export class BoxController {
                 }
             }
 
+            const tables = TableE.findAll();
+            for(const table of await tables) {
+                const tableDB = await TableE.findOne({ where: { id: table.id } });
+                await tableDB.update({
+                    status: false
+                });
+            }
             await OrderProduct.destroy({ where: {} });
             await Order.destroy({ where: {} });
 
@@ -187,5 +195,4 @@ export class BoxController {
             });
         }
     }
-
 }

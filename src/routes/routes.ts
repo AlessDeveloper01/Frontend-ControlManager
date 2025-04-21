@@ -5,6 +5,7 @@ import { CategoryRoutes } from "./category/routes";
 import { ProductRoutes } from "./product/routes";
 import { OrderRoutes } from "./order/routes";
 import { BoxRoutes } from "./box/routes";
+import { TableRoutes } from "./table/routes";
 
 export class AppRoutes {
     static get routes() {
@@ -16,6 +17,7 @@ export class AppRoutes {
         router.use('/api/product', ProductRoutes.routes);
         router.use('/api/order', OrderRoutes.routes);
         router.use('/api/box', BoxRoutes.routes);
+        router.use('/api/table', TableRoutes.routes);
 
         return router;
     }

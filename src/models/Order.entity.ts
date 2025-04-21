@@ -1,57 +1,59 @@
 import { Column, DataType, BelongsToMany, Model, Table, BelongsTo, ForeignKey } from "sequelize-typescript";
 import OrderProduct from "./OrderProduct.entity";
 import Product from "./Product.entity";
-
+import TableE from "./TableE.entity";
 
 @Table({
-    tableName: 'orders'
+    tableName: "orders",
 })
-
 class Order extends Model {
-
     @Column({
         type: DataType.STRING,
-        allowNull: false
-    }) 
+        allowNull: false,
+    })
     declare mesero: string;
 
     @Column({
         type: DataType.INTEGER,
-        allowNull: false
+        allowNull: false,
     })
     declare total: number;
 
     @Column({
         type: DataType.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        defaultValue: false,
     })
     declare status: boolean;
 
     @Column({
         type: DataType.DATE,
-        allowNull: false
+        allowNull: false,
     })
     declare date: Date;
 
     @Column({
         type: DataType.DATE,
-        allowNull: true
+        allowNull: true,
     })
     declare finishDate: Date;
 
     @Column({
         type: DataType.STRING,
-        allowNull: true
+        allowNull: true,
     })
     declare methodPayment: string;
 
+    @ForeignKey(() => TableE)
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
-        defaultValue: 0
+        defaultValue: 0,
     })
     declare numTable: number;
+
+    @BelongsTo(() => TableE)
+    declare table: TableE;
 
     @BelongsToMany(() => Product, () => OrderProduct)
     declare products: Product[];

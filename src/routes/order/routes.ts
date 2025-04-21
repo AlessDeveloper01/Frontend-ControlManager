@@ -13,6 +13,7 @@ export class OrderRoutes {
         router.put('/update/:id', [AuthProtect.validateJWT, ValidationsContents.validationIdParam, ValidationsContents.OrderUpdate], OrderController.update);
         router.delete('/delete/:id', [AuthProtect.validateJWT, ValidationsContents.validationIdParam], OrderController.delete);
         router.put('/change-status/:id', [AuthProtect.validateJWT, ValidationsContents.validationIdParam, ValidationsContents.OrderChangeStatus], OrderController.changeStatus);
+        router.get('/get-summary', AuthProtect.validateJWT, OrderController.getSummaryProductsInOrdersAll);
 
         return router;
     }
