@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/node": "^22.14.1",
     "@types/qrcode": "^1.5.5",
     "sequelize-cli": "^6.6.2"
   }
