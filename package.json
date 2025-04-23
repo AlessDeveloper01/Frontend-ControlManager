@@ -1,6 +1,6 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
+  "name": "RestaurantB-Demo",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/app.ts",
@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "AlessDeveloper01",
   "license": "ISC",
-  "description": "Backend restaurante la perla - Not Comercial",
+  "description": "Backend restaurante Not Comercial",
   "dependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",

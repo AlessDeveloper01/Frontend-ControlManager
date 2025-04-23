@@ -2,14 +2,14 @@
 version: '3.8'
 
 services:
-  restaurant:
+  demorestaurant:
     image: postgres:latest
     restart: "no"
     shm_size: 128mb
     environment:
       POSTGRES_PASSWORD: aless123
       POSTGRES_USER: aless
-      POSTGRES_DB: restaurantdb
+      POSTGRES_DB: demorestaurant
     ports:
       - "5433:5432"
     volumes:
