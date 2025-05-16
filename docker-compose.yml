@@ -7,11 +7,11 @@ services:
     restart: "no"
     shm_size: 128mb
     environment:
-      POSTGRES_PASSWORD: aless123
-      POSTGRES_USER: aless
-      POSTGRES_DB: demorestaurant
+      POSTGRES_PASSWORD: name_usuario
+      POSTGRES_USER: pass_usuario
+      POSTGRES_DB: name_db
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - ./data:/var/lib/postgresql/data
    

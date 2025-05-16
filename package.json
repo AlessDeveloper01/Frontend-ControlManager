@@ -1,40 +1,42 @@
 {
-  "name": "RestaurantB-Demo",
-  "version": "1.0.1",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon src/app.ts",
-    "dev:api": "nodemon src/app.ts --api",
-    "build": "tsc",
-    "start": "node ./dist/index.js"
-  },
-  "keywords": [],
-  "author": "AlessDeveloper01",
-  "license": "ISC",
-  "description": "Backend restaurante Not Comercial",
-  "dependencies": {
-    "@types/bcrypt": "^5.0.2",
-    "@types/cors": "^2.8.17",
-    "@types/jsonwebtoken": "^9.0.7",
-    "bcrypt": "^5.1.1",
-    "colors": "^1.4.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "env-var": "^7.5.0",
-    "express": "^4.21.2",
-    "express-validator": "^7.2.1",
-    "jsonwebtoken": "^9.0.2",
-    "morgan": "^1.10.0",
-    "nodemon": "^3.1.9",
-    "pg": "^8.13.1",
-    "qrcode": "^1.5.4",
-    "sequelize-typescript": "^2.1.6",
-    "socket.io": "^4.8.1"
-  },
-  "devDependencies": {
-    "@types/express": "^5.0.0",
-    "@types/node": "^22.14.1",
-    "@types/qrcode": "^1.5.5",
-    "sequelize-cli": "^6.6.2"
-  }
+    "name": "RestaurantB-Demo",
+    "version": "1.0.1",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon src/app.ts",
+        "dev:api": "nodemon src/app.ts --api",
+        "build": "tsc",
+        "start": "node ./dist/index.js",
+        "seed": "sequelize db:seed:all",
+        "revert": "sequelize db:seed:undo:all"
+    },
+    "keywords": [],
+    "author": "AlessDeveloper01",
+    "license": "ISC",
+    "description": "Backend restaurante Not Comercial",
+    "dependencies": {
+        "@types/bcrypt": "^5.0.2",
+        "@types/cors": "^2.8.17",
+        "@types/jsonwebtoken": "^9.0.7",
+        "bcrypt": "^5.1.1",
+        "colors": "^1.4.0",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "env-var": "^7.5.0",
+        "express": "^4.21.2",
+        "express-validator": "^7.2.1",
+        "jsonwebtoken": "^9.0.2",
+        "morgan": "^1.10.0",
+        "nodemon": "^3.1.9",
+        "pg": "^8.13.1",
+        "qrcode": "^1.5.4",
+        "sequelize-typescript": "^2.1.6",
+        "socket.io": "^4.8.1"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.14.1",
+        "@types/qrcode": "^1.5.5",
+        "sequelize-cli": "^6.6.2"
+    }
 }

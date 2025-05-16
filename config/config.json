@@ -1,0 +1,36 @@
+
+{
+  "development": {
+      "username": "usuario_desarrollo",
+      "password": "contraseña_desarrollo",
+      "database": "nombre_base_datos_desarrollo",
+      "host": "host_desarrollo",
+      "dialect": "postgres",
+      "dialectOptions": {
+        "ssl": {
+          "require": true,
+          "rejectUnauthorized": false
+        }
+      }
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+      "username": "nombre_produccion",
+      "password": "contraseña_produccion",
+      "database": "nombre_base_datos_produccion",
+      "host": "nuevo_host_produccion",
+      "dialect": "postgres",
+      "dialectOptions": {
+          "ssl": {
+              "require": true,
+              "rejectUnauthorized": false
+          }
+      }
+  }
+}
