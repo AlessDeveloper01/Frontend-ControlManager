@@ -1,82 +1,75 @@
-# RestaurantF-Demo
+# Control & Manager - BACKEND
 
-¡Bienvenido a **Sistema Automatizador Desarrollado por LowSolutions - Rios Lopez Alessandro ING SoftWae¿re**! Este es un sistema de gestión para restaurantes desarrollado con [Next.js](https://nextjs.org). A continuación, encontrarás las instrucciones para instalar, configurar y desplegar el proyecto.
-
-## Requisitos Previos
-
-Antes de comenzar, asegúrate de tener instalado lo siguiente en tu sistema:
-
-- [Node.js](https://nodejs.org/) (versión 16 o superior)
-
-## Instalación
-
-Sigue estos pasos para instalar y ejecutar el proyecto en tu entorno local:
-
-1. Instala las dependencias del proyecto:
-
-    Con `npm`:
-
+1. Instala las dependencias necesarias:
     ```bash
     npm install
     ```
 
-2. Configura las variables de entorno:
+## Configuración de Variables de Entorno
 
-    Crea un archivo `.env` en caso que no se encuentre en la raíz del proyecto y define las variables necesarias
+Crea un archivo `.env` en la raíz del proyecto y configura las siguientes variables de entorno:
 
-
-    **Para desarrollo mantenlo de la siguiente manera:**
-
-    ```env
-    API_URL=http://localhost:4000/api
-    NEXT_PUBLIC_API_URL=http://localhost:4000/api
-    ```
-
-    Para producción:
-
-    ```env
-    API_URL=Url de tu API desplegada
-    NEXT_PUBLIC_API_URL=Url de tu API desplegada
-    ```
-
-## Uso
-
-Para iniciar el servidor de desarrollo, ejecuta:
-
-```bash
-npm run dev
+```env
+PORT=4000
+databaseUrl='postgres://<Usuario>:<Contraseña>@localhost:5432/<BaseDeDatos>'
+JWT_KEY='SECRET_KEY'
+URL_FRONTEND="http://localhost:3000"
+NEXT_PUBLIC_API_URL="http://localhost:4000/api"
 ```
 
-Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación en acción.
+## Configuración de la Base de Datos con Docker
 
-Puedes comenzar a editar las páginas modificando los archivos en la carpeta `app/`. Los cambios se reflejarán automáticamente en el navegador.
+1. Asegúrate de tener Docker instalado en tu máquina.  
+    [Descargar Docker](https://www.docker.com/get-started)
 
-## Cambio de Logo
-Para cambiar el logo de la aplicación, sigue estos pasos:
-1. Reemplaza el archivo `public/image.png` con tu propio logo. Asegúrate de que el nuevo logo tenga el mismo nombre (`image.png`) y esté en la misma ubicación.
-2. Ingresa a la carpeta `src/assets/image.png` y reemplaza el archivo `image.png` con tu propio logo. Asegúrate de que el nuevo logo tenga el mismo nombre (`image.png`) y esté en la misma ubicación.
+2. En el directorio se encuentra un archivo `docker-compose.yml` que puedes usar para crear un contenedor de PostgreSQL. Si eliminaste el archivo, puedes crear uno nuevo con el siguiente contenido:
+```yml
+    
+version: '3.8'
 
-# Cambio de Logo de LowSolutions
-3. Para realizar el cambio del logo de LowSolutions deberás reemplazar el archivo `public/images/logo.png` && `public/images/logowhite.png.png` con tu propio logo. Asegúrate de que el nuevo logo tenga el mismo nombre (`logo.png`) && (`logowhite.png`) y esté en la misma ubicación.
-4. De igual manera, ingresa a la carpeta `src/assets/images/logo.png` && `src/assets/images/logowhite.png` y reemplaza el archivo `logo.png` && `logowhite.png` con tu propio logo. Asegúrate de que el nuevo logo tenga el mismo nombre (`logo.png`) && (`logowhite.png`) y esté en la misma ubicación.
+services:
+  restaurant:
+    image: postgres:latest
+    restart: "no"
+    environment:
+      POSTGRES_PASSWORD: pass_usuario // Coloca la contraseña que desees
+      POSTGRES_USER: nombre_usuario // Coloca el nombre de usuario que desees
+      POSTGRES_DB: name_db // Coloca el nombre de la base de datos que desees
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+```	
 
-## Agregar Iconos Para el Menú
-Para agregar iconos al menú, sigue estos pasos:
-1. Obligatoriamente se recomienda que los iconos sean Vectoriales (SVG) para evitar problemas de calidad.
-2. Agrega iconos en la carpeta `public/logos/` y asegúrate de que tengan el mismo nombre que la categoria agregada al menú escritos con la nomenclatura siguiente:
-    - `icon_{nombreDeLaCategoria}.svg`
+3. Levanta el contenedor de PostgreSQL ejecutando el siguiente comando en la terminal desde el directorio donde se encuentra el archivo `docker-compose.yml`:
+    ```bash
+    docker-compose up -d
+    ```
 
-## Despliegue
+   Esto creará un contenedor de PostgreSQL y lo iniciará en segundo plano.
+   Puedes verificar que el contenedor esté corriendo con el siguiente comando:
+    ```bash
+    docker ps
+    ```
 
-El despliegue más sencillo es utilizando la plataforma [Vercel](https://vercel.com/). Sigue estos pasos:
+4. Asegúrate de que la variable `databaseUrl` en el archivo `.env` esté correctamente configurada para conectarse a la base de datos.
+    Por ejemplo:
+     ```env
+     databaseUrl='postgres://nombre_usuario:pass_usuario@localhost:5432/name_db'
+     ```
 
-1. Crea una cuenta en [Vercel](https://vercel.com/).
-2. Conecta tu repositorio de GitHub con Vercel.
-3. Configura las variables de entorno en el panel de Vercel.
-4. Haz clic en "Deploy" y tu aplicación estará en línea.
+## Ejecución del Proyecto
 
-Consulta la [documentación de despliegue de Next.js](https://nextjs.org/docs/app/building-your-application/deploying) para más detalles.
+1. Inicia el servidor de desarrollo:
+    ```bash
+    npm run dev
+    ```
+
+2. Accede a la aplicación en tu navegador en [http://localhost:4000](http://localhost:4000).
+
+## Notas
+
+- Asegúrate de que el contenedor de PostgreSQL esté corriendo antes de iniciar el servidor.
+- Si necesitas realizar migraciones o seeders en la base de datos, utiliza las herramientas de tu ORM o framework en este caso se utiliza `Sequelize`.
 
 ---
-
-¡Gracias por usar **Sistema Automatizador Desarrollado por LowSolutions**!😊
